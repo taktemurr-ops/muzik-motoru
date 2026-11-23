@@ -8,3 +8,5 @@ export 'src/core.dart' show MuzikStage, MuzikRules, MuzikKind, MLevel, MPuzzle, 
 export 'src/texts.dart';
 export 'src/theory.dart' show MNote, genMelody, melodyOk, parseTune, noteName;
 export 'src/data/tunes.dart' show kPdTunes, PdTune;
+export 'src/kinds/makam.dart' show kMakams, MakamDef, makamDegrees, makamTruth, perdeName, makamName;
+export 'src/synth.dart' show Synth;
