@@ -10,3 +10,6 @@ export 'src/theory.dart' show MNote, genMelody, melodyOk, parseTune, noteName;
 export 'src/data/tunes.dart' show kPdTunes, PdTune;
 export 'src/kinds/makam.dart' show kMakams, MakamDef, makamDegrees, makamTruth, perdeName, makamName;
 export 'src/synth.dart' show Synth;
+export 'src/kinds/dictation.dart' show kRCells, rdictCells, rdictSignature, rdictValid;
+export 'src/kinds/pitch.dart' show pitchCents;
+export 'src/mic.dart' show detectPitch, hzToMidi;

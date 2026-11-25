@@ -1,5 +1,5 @@
 name: muzik_motoru
-description: "Müzik ve Ritim ailesinin ortak motoru: nota karoları, ritim, davul, kulak eğitimi, gitar akorları, melodi hafızası ve nota okuma."
+description: "Müzik ve Ritim ailesinin ortak motoru: nota karoları, ritim, davul, kulak eğitimi, gitar akorları, melodi hafızası ve nota okuma, ritim diktesi ve mikrofonla ton tutma."
 publish_to: none
 version: 1.0.0
 
@@ -14,6 +14,7 @@ dependencies:
       url: https://github.com/taktemurr-ops/studio-core
       ref: 05acd1e648dcb04c962281272f3fb806fc9ccc99
   audioplayers: ^6.5.0
+  record: ">=5.2.0 <7.0.0"
   shared_preferences: ^2.3.2
   flutter_riverpod: ^2.6.1
 
