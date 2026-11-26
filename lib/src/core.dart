@@ -497,8 +497,10 @@ class StartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Yatay/küçük ekranda ve büyük yazıda kart kaydırılabilir (kesilmez).
     return Center(
-      child: Container(
+      child: SingleChildScrollView(
+        child: Container(
         margin: const EdgeInsets.all(24),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -518,6 +520,7 @@ class StartCard extends StatelessWidget {
           const SizedBox(height: 16),
           StudioButton(expand: false, icon: Icons.play_arrow, label: button, onPressed: onStart),
         ]),
+        ),
       ),
     );
   }
