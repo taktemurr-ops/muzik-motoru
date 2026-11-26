@@ -4,6 +4,7 @@ import 'kinds/beat.dart';
 import 'kinds/daily.dart';
 import 'kinds/dictation.dart';
 import 'kinds/drum.dart';
+import 'kinds/ek4.dart';
 import 'kinds/ear.dart';
 import 'kinds/garden.dart';
 import 'kinds/guitar.dart';
@@ -28,6 +29,10 @@ const Map<String, MuzikKind> kMuzikKinds = {
   'akort': AkortKind(),
   'ritim-diktesi': RDictKind(),
   'ton-tutma': PitchKind(),
+  'ritim-kosusu': RunKind(),
+  'usul-tala': UsulKind(),
+  'kalimba-gamelan': KalimbaKind(),
+  'melodi-bulmacasi': MelPuzKind(),
 };
 
 MuzikRules muzikRulesFor(String gameId, String kind) => muzikRules(gameId, kMuzikKinds[kind]!);

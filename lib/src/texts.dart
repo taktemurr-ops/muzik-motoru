@@ -1,5 +1,7 @@
 import 'package:studio_core/core/strings.dart';
 
+import 'texts_ek4.dart';
+
 /// muzik-motoru'nun kısa metinleri (33 dil). Sıra:
 /// tr en de es fr ar fa he ur ru uk pl cs ro hu el it pt nl sv da nb fi ja ko zh hi bn id ms th vi fil
 const Map<String, List<String>> kMuzikTexts = {
@@ -178,6 +180,6 @@ const Map<String, List<String>> kMuzikTexts = {
 };
 
 String mt(String lang, String key) {
-  final l = kMuzikTexts[key];
+  final l = kMuzikTexts[key] ?? kMuzikTexts4[key];
   return l == null ? key : Strings.pick(l, lang);
 }
