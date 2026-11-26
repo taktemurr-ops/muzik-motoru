@@ -6,6 +6,7 @@ import 'package:studio_core/core/rng.dart';
 import 'package:studio_core/core/stats.dart';
 
 import '../core.dart';
+import '../studio_chrome.dart';
 import '../texts.dart';
 import 'beat.dart';
 import 'drum.dart';
@@ -122,14 +123,17 @@ class _DailyViewState extends State<_DailyView> {
     final sub = MuzikPlay(ctx: widget.play.ctx, puzzle: p.parts[part], d: p.d, seed: widget.play.seed + part, voice: widget.play.voice, relay: _done);
     return Column(children: [
       Container(
-        color: MColors.night,
         padding: const EdgeInsets.only(top: 4, bottom: 2),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           for (var i = 0; i < 3; i++)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               margin: const EdgeInsets.symmetric(horizontal: 4),
-              decoration: BoxDecoration(color: i <= part ? MColors.accent : MColors.soft, borderRadius: BorderRadius.circular(8)),
+              decoration: BoxDecoration(
+                color: i <= part ? Color.lerp(StudioLook.of(context).base, StudioLook.of(context).accent, 0.5) : Colors.white.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: i <= part ? StudioLook.of(context).accent : Colors.white24),
+              ),
               child: Text(mt(widget.play.lang, 'daily_${p.kinds[i]}'), style: const TextStyle(color: Colors.white, fontSize: 11)),
             ),
         ]),

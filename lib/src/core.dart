@@ -306,15 +306,25 @@ class MBar extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(8, 4, 8, 0),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       height: 48,
-      decoration: BoxDecoration(color: MColors.stage.withValues(alpha: 0.94), borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.28),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: StudioLook.of(context).accent.withValues(alpha: 0.45), width: 1.2),
+      ),
       child: IconTheme(
         data: const IconThemeData(color: Colors.white),
         child: DefaultTextStyle.merge(
           style: const TextStyle(color: Colors.white),
           child: Row(children: [
-            if (left.isNotEmpty) Text(left, style: const TextStyle(fontWeight: FontWeight.w800)),
+            if (left.isNotEmpty) Text(left, style: TextStyle(fontWeight: FontWeight.w900, color: StudioLook.of(context).number)),
             const SizedBox(width: 8),
-            Expanded(child: FittedBox(fit: BoxFit.scaleDown, alignment: AlignmentDirectional.centerStart, child: Text(status, maxLines: 1))),
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(status, maxLines: 1, style: const TextStyle(fontWeight: FontWeight.w700, color: kStudioSubtle)),
+              ),
+            ),
             ...extra,
             if (pr != null && op != null)
               IconButton(
@@ -328,7 +338,8 @@ class MBar extends StatelessWidget {
               IconButton(tooltip: mt(lang, 'settings'), onPressed: () => showMusicSettings(context, play), icon: const Icon(Icons.tune)),
             ],
             if (onReset != null) IconButton(tooltip: mt(lang, 'reset'), onPressed: onReset, icon: const Icon(Icons.restart_alt)),
-            if (onHint != null) IconButton(tooltip: mt(lang, 'hint'), onPressed: onHint, icon: const Icon(Icons.lightbulb_outline)),
+            if (onHint != null)
+              IconButton(tooltip: mt(lang, 'hint'), onPressed: onHint, icon: const Icon(Icons.lightbulb_rounded, color: StudioLook.gold)),
           ]),
         ),
       ),
@@ -429,9 +440,10 @@ class MScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = top, b = bottom;
     final f = MusicPrefs.flash ? clampD(flash, 0, 1) : 0.0;
+    // Onaylı tasarımın degrade zemini (merkezin paleti).
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [MColors.night, Color(0xFF151B29)]),
+        gradient: StudioLook.of(context).backdrop,
         border: f > 0.01 ? Border.all(color: flashColor.withValues(alpha: 0.75 * f), width: 6) : null,
       ),
       child: Column(children: [
@@ -454,12 +466,13 @@ class MChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = color ?? MColors.soft;
+    final look = StudioLook.of(context);
+    final c = color ?? Color.lerp(look.card, Colors.white, 0.08)!;
     return Material(
-      color: selected ? Color.lerp(c, Colors.white, 0.25) : c,
+      color: selected ? Color.lerp(c, look.accent, 0.35) : c,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
-        side: BorderSide(color: selected ? Colors.white : Colors.white24, width: selected ? 2.5 : 1),
+        side: BorderSide(color: selected ? look.accent : Colors.white24, width: selected ? 2.5 : 1),
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
@@ -488,9 +501,14 @@ class StartCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(24),
         padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(color: MColors.stage, borderRadius: BorderRadius.circular(22), border: Border.all(color: Colors.white12)),
+        decoration: BoxDecoration(
+          gradient: StudioLook.of(context).tile,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: StudioLook.of(context).accent.withValues(alpha: 0.55), width: 1.4),
+          boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 16, offset: Offset(0, 6))],
+        ),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Icon(icon, color: MColors.ok, size: 44),
+          StudioIconBadge(icon, color: StudioLook.of(context).play, size: 56),
           const SizedBox(height: 10),
           Text(title, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w800)),
           if (subtitle.isNotEmpty) ...[
@@ -498,7 +516,7 @@ class StartCard extends StatelessWidget {
             Text(subtitle, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white70)),
           ],
           const SizedBox(height: 16),
-          FilledButton.icon(onPressed: onStart, icon: const Icon(Icons.play_arrow), label: Text(button)),
+          StudioButton(expand: false, icon: Icons.play_arrow, label: button, onPressed: onStart),
         ]),
       ),
     );

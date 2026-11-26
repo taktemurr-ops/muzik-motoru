@@ -28,21 +28,18 @@ const List<MeterDef> kMeters = [
 
 Future<void> showMetronome(BuildContext context, MuzikPlay play) => showModalBottomSheet<void>(
       context: context,
-      backgroundColor: MColors.night,
       isScrollControlled: true,
       builder: (_) => SafeArea(child: _MetronomeSheet(play: play)),
     );
 
 Future<void> showFreePlay(BuildContext context, MuzikPlay play) => showModalBottomSheet<void>(
       context: context,
-      backgroundColor: MColors.night,
       isScrollControlled: true,
       builder: (_) => SafeArea(child: FractionallySizedBox(heightFactor: 0.86, child: FreePlayPanel(play: play))),
     );
 
 Future<void> showMusicSettings(BuildContext context, MuzikPlay play) => showModalBottomSheet<void>(
       context: context,
-      backgroundColor: MColors.night,
       isScrollControlled: true,
       builder: (_) => SafeArea(child: _SettingsSheet(play: play)),
     );
@@ -149,7 +146,7 @@ class _MetronomeSheetState extends State<_MetronomeSheet> with SingleTickerProvi
           duration: const Duration(milliseconds: 60),
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: Color.lerp(MColors.stage, MColors.ok, MusicPrefs.flash ? flash * 0.6 : 0),
+            color: Color.lerp(Colors.white.withValues(alpha: 0.08), MColors.ok, MusicPrefs.flash ? flash * 0.6 : 0),
             borderRadius: BorderRadius.circular(18),
           ),
           child: Column(children: [
