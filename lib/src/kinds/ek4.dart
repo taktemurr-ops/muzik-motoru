@@ -644,7 +644,7 @@ class _UsulViewState extends State<_UsulView> with SingleTickerProviderStateMixi
         child: Row(children: [
           _padBtn('D', const Color(0xFFB4523A), flex: 1.4),
           if (p.ka) _padBtn('K', const Color(0xFF4E6FB5), flex: 0.8),
-          _padBtn('T', const Color(0xFFC9962E)),
+          _padBtn('T', const Color(0xFF946A12)),
         ]),
       ),
     );
