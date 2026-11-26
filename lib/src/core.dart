@@ -14,6 +14,7 @@ import 'audio.dart';
 import 'texts.dart';
 import 'theory.dart';
 import 'tools.dart';
+import 'studio_chrome.dart';
 
 /// Müzik oyunlarından birinin kurulmuş bölümü.
 abstract class MPuzzle {
@@ -184,8 +185,12 @@ class _MuzikStageState extends State<MuzikStage> {
     super.dispose();
   }
 
+  /// Motorun bütün arayüzü (paneller, pencereler, düğmeler) onaylı koyu
+  /// tasarımda; tahta çizimleri kendi renklerini korur.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => StudioChrome(child: Builder(builder: _build));
+
+  Widget _build(BuildContext context) {
     final lv = widget.ctx.generated.puzzle as MLevel;
     return widget.rules.kind.build(MuzikPlay(ctx: widget.ctx, puzzle: lv.puzzle, d: lv.d, seed: widget.ctx.spec.seed, voice: voice));
   }
